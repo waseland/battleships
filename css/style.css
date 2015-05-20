@@ -1,0 +1,102 @@
+.square{
+	padding: 30px;
+	border: 5px solid #DDDDDD;
+	text-align: center;
+	background-color: #2266BB;
+}
+
+.table-centered{
+	margin: 0 auto !important;
+  	float: none !important;
+}
+
+.miss{
+	background-color: #004095;
+}
+
+@-webkit-keyframes fire {
+    0%   {background-color: red;}
+    25%  {background-color: orange;}
+    50%  {background-color: yellow;}
+    75% {background-color: orange;}
+    100% {background-color: red;}
+}
+
+.hit{
+	-webkit-animation: fire 5s infinite;
+}
+
+a{
+	text-decoration: none !important;
+}
+
+.active{
+	background-color: #DDDDDD !important;
+}
+
+a:hover{
+	color: #00A373;
+}
+
+.ship{
+	background-color: #333333;
+}
+
+.shipshadow{
+	background-color: #444444;
+}
+
+.icon-menu{
+	color: #AAA;
+	-webkit-transition: 0.3s -webkit-filter ease-out;
+}
+
+.icon-menu:hover{
+	-webkit-filter: grayscale(0.5) blur(2px);
+	-webkit-transition: 0.3s -webkit-filter linear;
+}
+
+/* Initial body */
+body {
+  left: 0;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Initial menu */
+.menu {
+  background: #202024 url('http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/uber/black-thread.png') repeat left top;
+  left: -285px;  /* start off behind the scenes */
+  height: 100%;
+  position: fixed;
+  width: 285px;
+}
+
+/* Basic styling */
+
+.jumbotron {
+  background-image: url('http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/uber/bg.png'); 
+  height: 100%;
+  -webkit-background-size: cover;
+     -moz-background-size: cover;
+       -o-background-size: cover;
+          background-size: cover;
+}
+
+.menu ul {
+  border-top: 1px solid #636366;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  border-bottom: 1px solid #636366;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 45px;
+  padding-bottom: 3px;
+  padding-left: 20px;
+  padding-top: 3px;
+}
+

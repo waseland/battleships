@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Eindopdracht | Zeeslag</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/cosmo/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+<body>
+	<div class="container menu">
+		<ul>
+			<li><a href="#">My Games</a></li>
+			<li><a href="#">My Statitistics</a></li>
+		</ul>
+	</div>
+	<div class="container text-center">
+		<header>
+			<div id="menu-icon">
+				<i class="icon-menu fa fa-list fa-lg pull-left"></i>
+			</div>
+			<h2>Battleships</h2>
+			<hr>
+		</header>
+		<div class="col-md-12">
+			<div class="col-md-9">
+				<table id="board" class="table-centered">
+
+				</table>
+			</div>
+			<div class="col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Ships</h3>
+					</div>
+					<ul class="list-group">
+					    <li id="minesweeper" class="list-group-item">
+					    	<button onclick="setShip()" class="btn btn-primary btn-xs pull-left"><i class="fa fa-ship"></i></button>
+							<span class="badge">4</span>
+					    	<a name="patrolboat"href="#" onclick="selectShip(minesweeper)">Patrol Boat</a>
+					   	</li>
+					    <li id="frigate" class="list-group-item">
+					    	<button onclick="setShip()" class="btn btn-primary btn-xs pull-left"><i class="fa fa-ship"></i></button>
+							<span class="badge">4</span>
+					    	<a name="" href="#" onclick="selectShip(frigate)">Battleship</a>
+					   	</li>
+					    <li id="cruiser" class="list-group-item">
+					    	<button onclick="setShip()" class="btn btn-primary btn-xs pull-left"><i class="fa fa-ship"></i></button>
+							<span class="badge">2</span>
+					    	<a href="#" onclick="selectShip(cruiser)">Destroyer</a>
+					    </li>
+				    	<li id="battleship" class="list-group-item">
+					    	<button onclick="setShip()" class="btn btn-primary btn-xs pull-left"><i class="fa fa-ship"></i></button>
+							<span class="badge">1</span>
+					    	<a href="#" onclick="selectShip(battleship)">Aircraft Carrier</a>
+					    </li>
+					</ul>
+				</div>
+				<p id="message"></p>
+			</div>
+		</div>
+		<footer class="clearfix">
+			<hr>
+		</footer>
+	</div>
+</body>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="js/javascript.js"></script>
+</html>
