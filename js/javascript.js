@@ -6,8 +6,20 @@ $(document).ready(function init(){
 	var ships = [["Minesweeper", 4, 2], ["Frigate", 4, 3], ["Cruiser", 2, 3], ["Battleship", 1, 4]];
 });
 
+
 $('#menu-icon').on('click', '.icon-menu', function(){
-	if($('.icon-menu').hasClass('fa-angle-down')){
+	if($('.icon-menu').hasClass('open')){
+		$('.menu').animate({
+			left: '-285px'
+		}, 200);
+
+		$('body').animate({
+			left: '0px'
+		}, 200);	
+		$('.icon-menu').removeClass('open');	
+	}
+
+	else{
 		$('.menu').animate({
 			left: '0px'
 		}, 200);
@@ -15,18 +27,7 @@ $('#menu-icon').on('click', '.icon-menu', function(){
 		$('body').animate({
 			left: '285px'
 		}, 200);
-		$('.icon-menu').removeClass('fa-angle-down').addClass('fa-angle-up');
-	}
-
-	else{
-		$('.menu').animate({
-			left: '-285px'
-		}, 200);
-
-		$('body').animate({
-			left: '0px'
-		}, 200);
-		$('.icon-menu').removeClass('fa-angle-up').addClass('fa-angle-down');
+		$('.icon-menu').addClass('open');	
 	}
 });
 
