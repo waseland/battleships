@@ -7,12 +7,16 @@
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
+	<!-- SETTINGS MENU -->
 	<div class="menu text-center">
 		<ul>
-			<li><a href="#"><h4>My Games</h4></a></li>
-			<li><a href="#"><h4>My Statitistics</h4></a></li>
+			<a href="" data-toggle="modal" data-target="#myAccount"><li><p>My Account</p></li></a>
+			<a href="" data-toggle="modal" data-target="#myGames"><li><p>My Games</p></li></a>
 		</ul>
 	</div>
+	<!-- /SETTINGS MENU -->
+
+	<!-- CONTAINER -->
 	<div class="container text-center">
 		<header>
 			<div id="menu-icon">
@@ -21,12 +25,17 @@
 			<h2>Battleships</h2>
 			<hr>
 		</header>
+
+		<!-- GAMEBOARD -->
 		<div class="col-md-12">
 			<div class="col-md-9">
 				<table id="board" class="table-centered">
 
 				</table>
 			</div>
+			<!-- /GAMEBOARD -->
+
+			<!-- SHIP DOCKING MENU -->
 			<div class="col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -34,35 +43,97 @@
 					</div>
 					<ul class="list-group">
 					    <li id="minesweeper" class="list-group-item">
-					    	<button onclick="setShip()" class="btn btn-primary btn-xs pull-left"><i class="fa fa-ship"></i></button>
+					    	<button class="btn btn-primary btn-xs pull-left"><i class="fa fa-ship"></i></button>
 							<span class="badge">4</span>
-					    	<a name="patrolboat"href="#" onclick="selectShip(minesweeper)">Patrol Boat</a>
+					    	<a name="patrolboat"href="#">Patrol Boat</a>
 					   	</li>
 					    <li id="frigate" class="list-group-item">
-					    	<button onclick="setShip()" class="btn btn-primary btn-xs pull-left"><i class="fa fa-ship"></i></button>
+					    	<button class="btn btn-primary btn-xs pull-left"><i class="fa fa-ship"></i></button>
 							<span class="badge">4</span>
-					    	<a name="" href="#" onclick="selectShip(frigate)">Battleship</a>
+					    	<a name="" href="#">Battleship</a>
 					   	</li>
 					    <li id="cruiser" class="list-group-item">
-					    	<button onclick="setShip()" class="btn btn-primary btn-xs pull-left"><i class="fa fa-ship"></i></button>
+					    	<button class="btn btn-primary btn-xs pull-left"><i class="fa fa-ship"></i></button>
 							<span class="badge">2</span>
-					    	<a href="#" onclick="selectShip(cruiser)">Destroyer</a>
+					    	<a href="#">Destroyer</a>
 					    </li>
 				    	<li id="battleship" class="list-group-item">
-					    	<button onclick="setShip()" class="btn btn-primary btn-xs pull-left"><i class="fa fa-ship"></i></button>
+					    	<button class="btn btn-primary btn-xs pull-left"><i class="fa fa-ship"></i></button>
 							<span class="badge">1</span>
-					    	<a href="#" onclick="selectShip(battleship)">Aircraft Carrier</a>
+					    	<a href="#">Aircraft Carrier</a>
 					    </li>
 					</ul>
 				</div>
+				<!-- GAME MESSAGES -->
 				<p id="message"></p>
+				<!-- /GAME MESSAGES -->
 			</div>
 		</div>
+		<!-- /SHIP DOCKING MENU -->
+
 		<footer class="clearfix">
 			<hr>
 		</footer>
 	</div>
+	<!-- /CONTAINER -->
+
+	<!-- MY ACCOUNT MODAL -->
+	<div class="modal fade" id="myAccount" tabindex="-1" role="dialog" aria-labelledby="myAccount" aria-hidden="true">
+	  	<div class="modal-dialog">
+	    	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        		<h4 class="modal-title" id="myModalLabel">My Account</h4>
+	      		</div>
+	      		<div class="modal-body">
+	      			<p id="accounterror" class="text-center"></p>
+	        		<p>If you would like to switch from account. Please insert your token below.</p>
+        			<form class="form-horizontal" role="form">
+	                    <div class="form-group">
+	                    	<div class="col-sm-12">
+	                        	<input class="form-control" id="token" placeholder="Token"/>
+	                    	</div>
+                  		</div>
+                	</form>
+	      		</div>
+	        	<div class="modal-footer">
+	            	<button id="signin" type="button" class="btn btn-primary"><i id="loading" class=""></i>Sign In</button>
+	        	</div>
+	    	</div>
+	    </div>
+	</div>
+	<!-- /MY ACCOUNT MODAL -->
+
+	<!-- MY GAMES MODAL -->
+	<div class="modal fade" id="myGames" tabindex="-1" role="dialog" aria-labelledby="myGames" aria-hidden="true">
+	  	<div class="modal-dialog">
+	    	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        		<h4 class="modal-title" id="myModalLabel">My Games</h4>
+	      		</div>
+	      		<div class="modal-body">
+	        		<table id="games" class="table table-bordered table-striped">
+	        			<tr id="table-header">
+	        				<thead>
+		        				<th>ID</th>
+		        				<th>Status</th>
+		        				<th>Enemy Name</th>
+	        				</thead>
+	        			</tr>
+	        		</table>
+	      		</div>
+	        	<div class="modal-footer">
+	        		<button type="button" class="btn btn-primary pull-left">New Game</button>
+	            	<button type="button" class="btn btn-primary">Select Game</button>
+	        	</div>
+	    	</div>
+	    </div>
+	</div>
+	<!-- /MY GAMES MODAL -->
+
 </body>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/javascript.js"></script>
 </html>

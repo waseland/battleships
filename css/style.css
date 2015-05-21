@@ -1,3 +1,21 @@
+/* DOM Elements */
+
+body {
+  left: 0;
+  margin: 0;
+  position: relative;
+}
+
+a{
+  text-decoration: none !important;
+}
+
+a:hover{
+  color: #00A373;
+}
+
+/* BOARD STYLES */
+
 .square{
 	padding: 30px;
 	border: 5px solid #DDDDDD;
@@ -10,9 +28,17 @@
   	float: none !important;
 }
 
-.miss{
-	background-color: #004095;
+/* SHIP STYLES */
+
+.ship{
+  background-color: #333333;
 }
+
+.shipshadow{
+  background-color: #444444;
+}
+
+/* SHOTS STYLES */
 
 @-webkit-keyframes fire {
     0%   {background-color: red;}
@@ -26,63 +52,19 @@
 	-webkit-animation: fire 5s infinite;
 }
 
-a{
-	text-decoration: none !important;
+.miss{
+  background-color: #004095;
 }
 
-.active{
-	background-color: #DDDDDD !important;
-}
+/* MENU STYLES */
 
-a:hover{
-	color: #00A373;
-}
-
-.ship{
-	background-color: #333333;
-}
-
-.shipshadow{
-	background-color: #444444;
-}
-
-.icon-menu{
-	color: #AAA;
-	-webkit-transition: 0.3s -webkit-filter ease-out;
-}
-
-.icon-menu:hover{
-	-webkit-filter: grayscale(0.5) blur(2px);
-	-webkit-transition: 0.3s -webkit-filter linear;
-}
-
-/* Initial body */
-body {
-  left: 0;
-  margin: 0;
-  overflow: hidden;
-  position: relative;
-}
-
-/* Initial menu */
 .menu {
-  background: #2266BB repeat left top;
-  left: -285px;  /* start off behind the scenes */
+  background-color: #333;
+  left: -285px;
   height: 100%;
   position: fixed;
-  width: 285px;
-  border-right: 2px solid #004095;
-}
-
-/* Basic styling */
-
-.jumbotron {
-  background-image: url('http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/uber/bg.png'); 
-  height: 100%;
-  -webkit-background-size: cover;
-     -moz-background-size: cover;
-       -o-background-size: cover;
-          background-size: cover;
+  width: 225px;
+  border-right: 4px solid #888;
 }
 
 .menu ul {
@@ -92,12 +74,31 @@ body {
 }
 
 .menu li{
-  border-bottom: 1px solid #004095;
+  padding-top: 10px;
+  border-bottom: 1px solid #444;
 }
 
-.menu li a{
+.menu li:hover{
+  background-color: #444
+}
+
+.menu a li{
   color: white;
   text-transform: uppercase;
-
 }
 
+.menu a li p{
+  font-size: 26px;
+}
+
+/* ICON MENU STYLES */
+
+.icon-menu{
+  color: #AAA;
+  -webkit-transition: 0.3s -webkit-filter ease-out;
+}
+
+.icon-menu:hover{
+  -webkit-filter: grayscale(0.5) blur(2px);
+  -webkit-transition: 0.3s -webkit-filter linear;
+}
