@@ -1,11 +1,38 @@
-var key = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.InBqbWR1ZmZ5QGF2YW5zLm5sIg.3_74qaKqZl4lhjCAXyzZknR4OPpnTk6OzwdYaHN9OJw";
+var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.InBqbWR1ZmZ5QGF2YW5zLm5sIg.3_74qaKqZl4lhjCAXyzZknR4OPpnTk6OzwdYaHN9OJw";
+
+// INIT
 
 $(document).ready(function init(){
 
 	initBoard();
-	var ships = [["Minesweeper", 4, 2], ["Frigate", 4, 3], ["Cruiser", 2, 3], ["Battleship", 1, 4]];
+	games();
 });
 
+// Click function to switch from tokens.
+
+$('#signin').on('click', function(){
+	token = $('#token').val();
+	$('#signin').html("");
+	$('#signin').html("<i id='loading'></i>");
+	$('#loading').addClass('fa fa-spinner fa-spin');
+	$.getJSON('https://zeeslagavans.herokuapp.com/users/me/games?token=' + token,
+		function(data){
+			if(data.msg){
+				$('#accounterror').addClass('alert alert-danger').html('<b>Whoops!</b> You have entered an invalid token! Please try again!');
+				$('#token').val("");
+				$('#signin').html("Sign In");
+			} 
+
+			else{
+				$('#myAccount').modal('hide');
+				$('#accounterror').removeClass('alert alert-danger').html('');
+				$('#token').val("");
+				$('#signin').html("Sign In");
+			}
+		});
+});
+
+// Toggle the sidemenu.
 
 $('#menu-icon').on('click', '.icon-menu', function(){
 	if($('.icon-menu').hasClass('open')){
@@ -30,6 +57,17 @@ $('#menu-icon').on('click', '.icon-menu', function(){
 		$('.icon-menu').addClass('open');	
 	}
 });
+
+// Get the games for the current user and display them in the sidemenu.
+
+var games = function getMyGames(){
+	$.getJSON('https://zeeslagavans.herokuapp.com/users/me/games?token=' + token,
+		function(data){
+			for(var i = 0; i < data.length; i++){
+				$('#games').append("<tbody><tr><td>" + data[i]._id + "</td><td>" + data[i].status + "</td><td>" + data[i].enemyName + "</td></tr></tbody>");
+			}
+		});
+}
 
 
 
@@ -89,7 +127,6 @@ function selectShip(id){
 		$('.active').removeClass('active');
 		$(id).addClass('active');
 	}
-
 }
 
 // This function will set the rotation of the ship.
