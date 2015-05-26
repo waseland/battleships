@@ -23,7 +23,7 @@
 		</header>
 		<div class="col-md-12">
 			<div class="col-md-9">
-				<table id="board" class="table-centered">
+				<table id="board" class="table-centered" ondrop="dropShip()" ondragover="dragOver()">
 
 				</table>
 			</div>
@@ -36,22 +36,22 @@
 					    <li id="minesweeper" class="list-group-item">
 					    	<button onclick="setShip()" class="btn btn-primary btn-xs pull-left"><i class="fa fa-ship"></i></button>
 							<span class="badge">4</span>
-					    	<a name="patrolboat"href="#" onclick="selectShip(minesweeper)">Patrol Boat</a>
+					    	<a name="patrolboat" draggable="true" ondragstart="selectShip(minesweeper)">Patrol Boat</a>
 					   	</li>
 					    <li id="frigate" class="list-group-item">
 					    	<button onclick="setShip()" class="btn btn-primary btn-xs pull-left"><i class="fa fa-ship"></i></button>
 							<span class="badge">4</span>
-					    	<a name="" href="#" onclick="selectShip(frigate)">Battleship</a>
+					    	<a name="Battleship" draggable="true" ondragstart="selectShip(frigate)">Battleship</a>
 					   	</li>
 					    <li id="cruiser" class="list-group-item">
 					    	<button onclick="setShip()" class="btn btn-primary btn-xs pull-left"><i class="fa fa-ship"></i></button>
 							<span class="badge">2</span>
-					    	<a href="#" onclick="selectShip(cruiser)">Destroyer</a>
+					    	<a name="Destroyer" draggable="true" ondragstart="selectShip(cruiser)">Destroyer</a>
 					    </li>
 				    	<li id="battleship" class="list-group-item">
 					    	<button onclick="setShip()" class="btn btn-primary btn-xs pull-left"><i class="fa fa-ship"></i></button>
 							<span class="badge">1</span>
-					    	<a href="#" onclick="selectShip(battleship)">Aircraft Carrier</a>
+					    	<a name="AircraftCarrier" draggable="true" ondragstart="selectShip(battleship)">Aircraft Carrier</a>
 					    </li>
 					</ul>
 				</div>

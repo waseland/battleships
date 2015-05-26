@@ -74,9 +74,7 @@ function fire(id){
 
 // This function will select a ship so you can place it on the board.
 
-function selectShip(id){
-	
-	console.log($('.active')[0]);	
+function selectShip(id){	
 
 	if(!$('.active')[0]){
 		$(id).addClass('active');
@@ -89,9 +87,16 @@ function selectShip(id){
 		$('.active').removeClass('active');
 		$(id).addClass('active');
 	}
+	console.log($('.active')[0]);
+}
+//This function will drop the ship on the table
+function dropship(){
 
 }
+//This function will let you see where you will drop the ship
+function dragOver(){
 
+}
 // This function will set the rotation of the ship.
 
 function setShip(){
