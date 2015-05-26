@@ -6,6 +6,8 @@ $(document).ready(function init(){
 
 	initBoard();
 	games();
+	ships();
+	setInterval(placeShip(), 1);
 });
 
 // Click function to switch from tokens.
@@ -63,8 +65,19 @@ $('#menu-icon').on('click', '.icon-menu', function(){
 var games = function getMyGames(){
 	$.getJSON('https://zeeslagavans.herokuapp.com/users/me/games?token=' + token,
 		function(data){
+			$('#games').append('<tbody>');
 			for(var i = 0; i < data.length; i++){
-				$('#games').append("<tbody><tr><td>" + data[i]._id + "</td><td>" + data[i].status + "</td><td>" + data[i].enemyName + "</td></tr></tbody>");
+				$('#games').append('<tr><td>' + data[i]._id + '</td><td>' + data[i].status + '</td><td>' + data[i].enemyName + '</td></tr></tbody>');
+			}
+			$('#games').append('</tbody>');
+		});
+}
+
+var ships = function getShips(){
+	$.getJSON('https://zeeslagavans.herokuapp.com/ships?token=' + token,
+		function(data){
+			for(var i = 0; i < data.length; i++){
+				$('#ships').append('<li class="list-group-item"><button class="btn btn-primary btn-xs pull-left"><i class="fa fa-ship"></i></button><span class="badge">' + data[i].length + '</span><a href="#">' + data[i].name + '</a></li>');
 			}
 		});
 }
@@ -77,16 +90,17 @@ function initBoard(){
 
 	var xLength = 10;
 	var yLength = 10;
+	var charA = 97;
 	var board;
 
-	for(var x = 0; x < xLength; x++ ){
-		board += "<tr>";
+	for(var x = charA; x < charA + xLength; x++ ){
+		board += '<tr>';
 
-		for(var y = 0; y < yLength; y++){
-			board += "<td id='" + x + y + "' class='square' onclick='fire(this.id)'></td>";
+		for(var y = 1; y <= yLength; y++){
+			board += '<td id=' + String.fromCharCode(x) + y + ' class="square" onclick="fire(this.id)"></td>';
 		}
 
-		board += "</tr>";
+		board += '</tr>';
 	}
 
 	$('#board').html(board);
@@ -114,6 +128,7 @@ function fire(id){
 
 function selectShip(id){
 	
+
 	console.log($('.active')[0]);	
 
 	if(!$('.active')[0]){
@@ -140,7 +155,10 @@ function setShip(){
 
 function placeShip(){
 
-	if($('#00').on("mouseover")){
-		$('#00').addClass('shipshadow');
-	}
+	$('#a1').mouseover(function(){
+		$('#a1').addClass('shipshadow');
+	});
+	$('#a1').mouseout(function(){
+		$('#a1').removeClass('shipshadow');
+	});
 }
