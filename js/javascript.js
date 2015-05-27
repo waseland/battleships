@@ -13,25 +13,30 @@ $(document).ready(function init(){
 // Click function to switch from tokens.
 
 $('#signin').on('click', function(){
-	token = $('#token').val();
-	$('#signin').html("");
-	$('#signin').html("<i id='loading'></i>");
-	$('#loading').addClass('fa fa-spinner fa-spin');
-	$.getJSON('https://zeeslagavans.herokuapp.com/users/me/games?token=' + token,
-		function(data){
-			if(data.msg){
-				$('#accounterror').addClass('alert alert-danger').html('<b>Whoops!</b> You have entered an invalid token! Please try again!');
-				$('#token').val("");
-				$('#signin').html("Sign In");
-			} 
+	try{
+		token = $('#token').val();
+		$('#signin').html("");
+		$('#signin').html("<i id='loading'></i>");
+		$('#loading').addClass('fa fa-spinner fa-spin');
+		$.get('https://zeeslagavans.herokuapp.com/users/me/games?token=' + token,
+			function(data){
+				if(data.msg){
+					$('#accounterror').addClass('alert alert-danger').html('<b>Whoops!</b> You have entered an invalid token! Please try again!');
+					$('#token').val("");
+					$('#signin').html("Sign In");
+				} 
 
-			else{
-				$('#myAccount').modal('hide');
-				$('#accounterror').removeClass('alert alert-danger').html('');
-				$('#token').val("");
-				$('#signin').html("Sign In");
-			}
-		});
+				else{
+					$('#myAccount').modal('hide');
+					$('#accounterror').removeClass('alert alert-danger').html('');
+					$('#token').val("");
+					$('#signin').html("Sign In");
+				}
+			});
+	}
+	catch(ex){
+		alert("An error occured, please try again later.")
+	}
 });
 
 // Toggle the sidemenu.
@@ -77,7 +82,7 @@ var ships = function getShips(){
 	$.getJSON('https://zeeslagavans.herokuapp.com/ships?token=' + token,
 		function(data){
 			for(var i = 0; i < data.length; i++){
-				$('#ships').append('<li class="list-group-item"><button class="btn btn-primary btn-xs pull-left"><i class="fa fa-ship"></i></button><span class="badge">' + data[i].length + '</span><a href="#">' + data[i].name + '</a></li>');
+				$('#ships').append('<li class="list-group-item" draggable="true" ondragstart="selectShip('+ data[i]._id + ')"><button class="btn btn-primary btn-xs pull-left"><i class="fa fa-ship"></i></button><span class="badge">' + data[i].length + '</span><a href="#">' + data[i].name + '</a></li>');
 			}
 		});
 }
@@ -97,7 +102,7 @@ function initBoard(){
 		board += '<tr>';
 
 		for(var y = 1; y <= yLength; y++){
-			board += '<td id=' + String.fromCharCode(x) + y + ' class="square" onclick="fire(this.id)"></td>';
+			board += '<td id=' + String.fromCharCode(x) + y + ' ondrop="dropShip(this.id)" ondragover="dragOver(this.id)" class="square" onclick="fire(this.id)"></td>';
 		}
 
 		board += '</tr>';
@@ -127,9 +132,6 @@ function fire(id){
 // This function will select a ship so you can place it on the board.
 
 function selectShip(id){
-	
-
-	console.log($('.active')[0]);	
 
 	if(!$('.active')[0]){
 		$(id).addClass('active');
@@ -142,11 +144,19 @@ function selectShip(id){
 		$('.active').removeClass('active');
 		$(id).addClass('active');
 	}
+	console.log($('.active')[0]);
 }
-
+//This function will drop the ship on the table
+function dropship(id){
+	console.log("dropped on: " + id)
+}
+//This function will let you see where you will drop the ship
+function dragOver(id){
+	console.log("dragged over: " + id)
+}
 // This function will set the rotation of the ship.
 
-function setShip(){
+function setShip(id){
 
 
 }
@@ -162,3 +172,25 @@ function placeShip(){
 		$('#a1').removeClass('shipshadow');
 	});
 }
+
+// Mygame buttons
+
+$('#newgame').on('click', function(){
+	if (confirm('Weet je zeker dat je een nieuwe game wil maken?')) {
+        $(this).prev('span.text').remove();
+        $.getJSON('http://zeeslagavans.herokuapp.com/games?token=' + token);
+    }
+	console.log("newgame")
+	});
+
+$('#newgameai').on('click', function(){
+	if (confirm('Weet je zeker dat je een nieuwe AI game wil maken?')) {
+        $(this).prev('span.text').remove();
+		$.getJSON('http://zeeslagavans.herokuapp.com/games/AI?token=' + token);
+    }
+	console.log("newgameai")
+	});
+
+$('#selectgame').on('click', function(){	
+	console.log("selectgame")
+	});
