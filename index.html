@@ -29,7 +29,7 @@
 		<!-- GAMEBOARD -->
 		<div class="col-md-12">
 			<div class="col-md-9">
-				<table id="board" class="table-centered" ondrop="dropShip()" ondragover="dragOver()">
+				<table id="board" class="table-centered">
 
 				</table>
 			</div>
@@ -105,8 +105,9 @@
 	        		</table>
 	      		</div>
 	        	<div class="modal-footer">
-	        		<button type="button" class="btn btn-primary pull-left">New Game</button>
-	            	<button type="button" class="btn btn-primary">Select Game</button>
+	        		<button type="button" id="newgame" class="btn btn-primary pull-left">New Game</button>
+	        		<button type="button" id="newgameai" class="btn btn-primary pull-left">New Game AI</button>
+	            	<button type="button" id="selectgame" class="btn btn-primary">Select Game</button>
 	        	</div>
 	    	</div>
 	    </div>
