@@ -70,9 +70,9 @@ $('#menu-icon').on('click', '.icon-menu', function(){
 var games = function getMyGames(){
 	$.getJSON('https://zeeslagavans.herokuapp.com/users/me/games?token=' + token,
 		function(data){
-			$('#games').append('<tbody>');
+			$('#games').append('<tbody class="text-center">');
 			for(var i = 0; i < data.length; i++){
-				$('#games').append('<tr><td>' + data[i]._id + '</td><td>' + data[i].status + '</td><td>' + data[i].enemyName + '</td></tr></tbody>');
+				$('#games').append('<tr><td>' + data[i]._id + '</td><td>' + data[i].status + '</td><td>' + data[i].enemyName + '</td><td><button class="btn btn-primary btn-xs"><i class="fa fa-gamepad"></i></button></td></tr>');
 			}
 			$('#games').append('</tbody>');
 		});
@@ -176,21 +176,26 @@ function placeShip(){
 // Mygame buttons
 
 $('#newgame').on('click', function(){
-	if (confirm('Weet je zeker dat je een nieuwe game wil maken?')) {
-        $(this).prev('span.text').remove();
-        $.getJSON('http://zeeslagavans.herokuapp.com/games?token=' + token);
-    }
-	console.log("newgame")
-	});
+	$.get('http://zeeslagavans.herokuapp.com/games?token=' + token, function(data){
+		if(!data.msg){
+        	$('#new-game-msg').addClass('alert alert-success').html('<b>Success!</b> New game has been created!').slideDown(400).delay(3000).slideUp(400);
+        	games();
+		}
+		else{
+			$('#new-game-msg').addClass('alert alert-danger').html('<b>Whoops!</b> Something went wrong! Please try again!').slideDown(400).delay(3000).slideUp(400);
+		}
+	}) 
+});
 
 $('#newgameai').on('click', function(){
-	if (confirm('Weet je zeker dat je een nieuwe AI game wil maken?')) {
-        $(this).prev('span.text').remove();
-		$.getJSON('http://zeeslagavans.herokuapp.com/games/AI?token=' + token);
-    }
-	console.log("newgameai")
-	});
-
-$('#selectgame').on('click', function(){	
-	console.log("selectgame")
-	});
+	$.get('http://zeeslagavans.herokuapp.com/games/AI?token=' + token, function(data){
+		if(!data.msg){
+        	$('#new-game-msg').addClass('alert alert-success').html('<b>Success!</b> New game has been created!').slideDown(400).delay(3000).slideUp(400);
+        	$('#games').html("");
+        	games();
+		}
+		else{
+			$('#new-game-msg').addClass('alert alert-danger').html('<b>Whoops!</b> Something went wrong! Please try again!').slideDown(400).delay(3000).slideUp(400);
+		}
+	}) 
+});
