@@ -110,3 +110,11 @@ a:hover{
 #new-game-msg{
   display: none;
 }
+
+#ship-image{
+  margin: 10px;
+}
+
+.horizontal{
+  -webkit-transform: rotate(90deg);
+}
